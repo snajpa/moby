@@ -44,7 +44,7 @@ import (
 	"github.com/docker/docker/pkg/locker"
 	"github.com/docker/docker/pkg/mount"
 	"github.com/docker/docker/pkg/system"
-	rsystem "github.com/opencontainers/runc/libcontainer/system"
+	//rsystem "github.com/opencontainers/runc/libcontainer/system"
 	"github.com/opencontainers/selinux/go-selinux/label"
 	"github.com/pkg/errors"
 	"github.com/sirupsen/logrus"
@@ -177,9 +177,11 @@ func supportsAufs() error {
 	// proc/filesystems for when aufs is supported
 	exec.Command("modprobe", "aufs").Run()
 
+	/*
 	if rsystem.RunningInUserNS() {
 		return ErrAufsNested
 	}
+	*/
 
 	f, err := os.Open("/proc/filesystems")
 	if err != nil {
